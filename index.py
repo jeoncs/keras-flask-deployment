@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, render_template, jsonify
 from util import *
+import time
 import argparse
 
 
@@ -35,14 +36,18 @@ def predict():
             image = request.files["file"].read()
 
             print(u'이미지 전처리')
+            timer = time.time()
             # preprocess the image and prepare it for classification
             image = prepare_image(image)
+            print(u'이미지 처리 시간 {}'.format(time.time() - timer))
 
             # classify the input image and then initialize the list
             # of predictions to return to the client
             print(u'추론 시작')
+            timer = time.time()
             preds = model.predict(image)
             results = parse_result(preds, cat_code)
+            print(u'추론 처리 시간 {}'.format(time.time() - timer))
 
             # loop over the results and add them to the list of
             # returned predictions
