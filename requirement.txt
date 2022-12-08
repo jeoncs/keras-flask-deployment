@@ -2,7 +2,7 @@ absl-py==0.6.1
 astor==0.7.1
 boto3==1.9.71
 botocore==1.12.71
-certifi==2018.11.29
+certifi==2022.12.7
 Click==7.0
 docutils==0.14
 Flask==1.0.2
